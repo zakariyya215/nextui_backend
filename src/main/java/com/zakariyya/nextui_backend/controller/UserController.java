@@ -1,7 +1,11 @@
 package com.zakariyya.nextui_backend.controller;
 
 import com.zakariyya.nextui_backend.dto.req.LoginReq;
+import com.zakariyya.nextui_backend.service.UserService;
+import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,11 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("user")
 public class UserController {
+    @Resource
+    private UserService userService;
     /**
      * 用户登录
      */
     @PostMapping("doLogin")
-    public String doLogin(LoginReq loginReq) {
-        return "登陆成功";
+    public String doLogin(@RequestBody @Valid LoginReq loginReq) {
+        return userService.doLogin(loginReq);
     }
 }

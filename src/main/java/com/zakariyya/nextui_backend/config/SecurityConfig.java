@@ -4,7 +4,6 @@ import com.zakariyya.nextui_backend.filter.AuthenticationTokenFilter;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -12,13 +11,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,6 +40,7 @@ public class SecurityConfig {
                 .addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
     @Bean
     public UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
